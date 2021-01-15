@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "target": "ES6",
+    "module": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": [
+        "./node_modules/*"
+      ],
+      "~g/*": [
+        "./src/modules/*"
+      ],
+      "~s/*": [
+        "./src/assets/styles/*"
+      ]
+    },
+    "strict": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  }
+}

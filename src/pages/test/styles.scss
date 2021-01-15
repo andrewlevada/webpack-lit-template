@@ -1,0 +1,9 @@
+@use "../../assets/styles/global";
+
+.container {
+  margin: 40px;
+
+  .hello-text {
+    font-size: 2rem;
+  }
+}

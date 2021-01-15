@@ -1,0 +1,3 @@
+// Styles
+import "./styles.scss";
+
