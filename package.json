@@ -6,8 +6,10 @@
     "@webpack-cli/init": "^1.0.3",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "css-loader": "^5.0.1",
+    "css-minimizer-webpack-plugin": "^2.0.0",
     "filemanager-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^4.5.0",
+    "inspectpack": "^4.7.1",
     "mini-css-extract-plugin": "^1.3.3",
     "node-sass": "^5.0.0",
     "sass": "^1.26.10",
@@ -20,11 +22,12 @@
     "typescript-plugin-css-modules": "^3.0.1",
     "webpack": "^5.10.1",
     "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
   },
-  "dependencies": {},
   "scripts": {
-    "build": "webpack",
-    "start:dev": "webpack serve --hot"
+    "build:with-stast": "webpack  --config webpack.prod.js --json > stats.json",
+    "build": "webpack --config webpack.prod.js",
+    "start:dev": "webpack serve --hot --config webpack.dev.js"
   }
 }
