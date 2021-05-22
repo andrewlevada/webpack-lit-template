@@ -9,7 +9,7 @@ module.exports = merge(common, {
 		contentBase: paths.dist,
 		stats: {
 			children: false, // Hide children information
-			maxModules: 0 // Set the maximum number of modules to be shown
+			maxModules: 0 // Set the maximum number of logic to be shown
 		},
 		compress: true,
 		host: '0.0.0.0', // Not localhost to be able to connect from other device in local network

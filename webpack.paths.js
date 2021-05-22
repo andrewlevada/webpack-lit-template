@@ -5,7 +5,8 @@ const paths = {
 	src: path.join(__dirname, '/src'),
 	dist: path.join(__dirname, '/dist'),
 	nodeModules: path.resolve(__dirname, 'node_modules'),
-	pages: path.join(__dirname, '/src/pages')
+	pages: path.join(__dirname, '/src/pages'),
+	locales: path.join(__dirname, '/locales')
 };
 
 module.exports = paths;

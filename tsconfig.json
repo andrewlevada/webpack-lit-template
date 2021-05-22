@@ -9,16 +9,21 @@
         "./node_modules/*"
       ],
       "~g/*": [
-        "./src/modules/*"
+        "./src/logic/*"
       ],
       "~s/*": [
         "./src/assets/styles/*"
+      ],
+      "~src/*": [
+        "./src/*"
       ]
     },
     "strict": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+
+    // This is used for css modules (Remove if needed)
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   }
 }
