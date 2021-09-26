@@ -2,18 +2,22 @@ const paths = require('./webpack.paths');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
-module.exports = merge(common, {
-	mode: 'development',
+const config = merge(common, {
+	mode: "development",
 
 	devServer: {
-		contentBase: paths.dist,
-		stats: {
-			children: false, // Hide children information
-			maxModules: 0 // Set the maximum number of logic to be shown
-		},
+		static: { directory: paths.dist },
 		compress: true,
-		host: '0.0.0.0', // Not localhost to be able to connect from other device in local network
+		host: "0.0.0.0", // Not localhost to be able to connect from other device in local network
 		port: 2797,
-		hot: true
+		hot: true,
+		// Used for complex url routing (can be removed)
+		historyApiFallback: {
+			rewrites: [
+				{ from: /^\/test\/.*/, to: '/test/index.html' },
+			],
+		},
 	}
 });
+
+module.exports = config;

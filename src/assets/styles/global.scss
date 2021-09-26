@@ -1,11 +1,5 @@
 @import "./reset";
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
-body,
-html {
-  height: 100%;
-}
-
-body {
-  background-color: #EEE;
+:host {
+  box-sizing: border-box;
 }

@@ -1,69 +1,45 @@
-const paths = require('./webpack.paths');
-const fs = require('fs');
-const webpack = require('webpack');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const paths = require("./webpack.paths");
+const fs = require("fs");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
-const HtmlReplaceWebpackPlugin = require("@zipeapps/html-replace-webpack-plugin");
+const SimpleProgressWebpackPlugin = require("simple-progress-webpack-plugin");
+const router = require("./router");
 
-const pages = fs.readdirSync(paths.pages);
-const localesPaths = fs.readdirSync(paths.locales);
+const pages = router.map(config => { return {
+	...config,
+	keyName: config.source.replace(/\//g, 'sl').replace(/-/g, ''),
+	component: fs.readFileSync(`${paths.pages}${config.source}/index.ts`).toString().match(/@customElement\("([^"]+)"\)/)[1],
+}});
 
-const defaultLocaleCode = "en";
-const localesNames = localesPaths.map(localePath => localePath.split(".locale.")[0]);
-const locales = new Map(localesPaths.map((localePath, index) =>
-	[localesNames[index], new Map(JSON.parse(fs.readFileSync(`${paths.locales}/${localePath}`)))]));
+for (let i = 0; i < pages.length; i++)
+	pages[i].outputPath = pages[i].outputPath === undefined ? pages[i].source : pages[i].outputPath;
 
-const pagesAndLocales = [];
-pages.forEach(page => localesNames.forEach(locale => pagesAndLocales.push({page: page, locale: locale})));
-
-// noinspection WebpackConfigHighlighting
-module.exports = {
-
-	// Create an entry for each html page
-	// Entry name will be the path part of url
-	entry: {
-		test: './src/pages/test/script.ts'
-	},
+const config = {
+	entry: Object.fromEntries(pages.map(page => [ page.keyName, `${paths.pages}${page.source}/index.ts` ])),
 
 	output: {
-		filename: "[name]/script.js",
-		path: `${paths.dist}`
+		path: `${paths.dist}`,
+
+		filename: (pathData) => {
+			const page = pages.find(page => page.keyName === pathData.chunk.name);
+			if (!page) return "[contenthash].bundle.js";
+			return `${page.outputPath.substring(1)}/script.js`;
+		}
 	},
 
 	plugins: [
-		new webpack.ProgressPlugin(),
-		new MiniCssExtractPlugin({filename: '[name]/style.css'}),
-		...pagesAndLocales.map(({page, locale}) => new HtmlWebpackPlugin({
-			template: `${paths.pages}/${page}/page.html`,
-			filename: locale === defaultLocaleCode ? (page === "root" ? "./index.html" : `./${page}/index.html`)
-				: (page === "root" ? `./${locale}/index.html` : `./${locale}/${page}/index.html`),
-			chunks: [page],
-			meta: {
-				charset: "utf-8",
-				viewport: "width=device-width, initial-scale=1.0"
-			}
+		new SimpleProgressWebpackPlugin(),
+		...pages.map(page => new HtmlWebpackPlugin({
+			template: `${paths.pages}/base.html`,
+			templateParameters: {
+				title: page.title,
+				description: page.description,
+				component: `<${page.component}></${page.component}>`
+			},
+			filename: `.${page.outputPath}/index.html`,
+			chunks: [page.keyName]
 		})),
-		new HtmlReplaceWebpackPlugin([{
-			pattern: "<html lang=\"\">",
-			replacement: function (match, file, groups) {
-				const fileRegex = file.match(/\.\/(.{2})\/(.+\/)*index\.html/);
-				return `<html lang="${fileRegex ? fileRegex[1] : defaultLocaleCode}">`;
-			}
-		}, {
-			pattern: /\$\$link-locale\$\$/g,
-			replacement: function (match, file, groups) {
-				const fileRegex = file.match(/\.\/(.{2})\/(.+\/)*index\.html/);
-				return fileRegex ? `/${fileRegex[1]}` : "";
-			}
-		}, {
-			pattern: /\$\$([\w-]+)\$\$/g,
-			replacement: function (match, file, groups) {
-				const fileRegex = file.match(/\.\/(.{2})\/(.+\/)*index\.html/);
-				return locales.get(fileRegex ? fileRegex[1] : defaultLocaleCode).get(groups[0]);
-			}
-		}]),
 		new FileManagerPlugin({
 			runTasksInSeries: true,
 			events: {
@@ -83,34 +59,27 @@ module.exports = {
 	module: {
 		rules: [{
 			test: /\.(ts|tsx)$/,
-			loader: 'ts-loader',
-			include: [paths.src],
-			exclude: [/node_modules/]
+			include: paths.src,
+			exclude: /node_modules/,
+			use: [
+				{ loader: "ts-loader" }
+			]
 		}, {
 			test: /.(scss|css)$/,
-
 			use: [
-				{
-					loader: MiniCssExtractPlugin.loader,
-					options: {
-						esModule: false,
-					},
-				}, {
-					loader: "css-loader",
-					options: {
-						modules: "global"
-					}
-				}, {
-					loader: "sass-loader",
-				}]
+				{ loader: "lit-css-loader" },
+				{ loader: "sass-loader" }
+			]
 		}, {
 			test: /\.(png|svg|jpg|jpeg|gif)$/,
-			type: 'asset/resource',
+			type: "asset/resource",
 		}]
 	},
 
 	resolve: {
-		extensions: ['.tsx', '.ts', '.js', '.css', '.scss'],
+		extensions: [".tsx", ".ts", ".js", ".css", ".scss"],
 		plugins: [new TsconfigPathsPlugin()]
 	}
 };
+
+module.exports = config;

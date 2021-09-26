@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "target": "ES6",
     "module": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./node_modules/*"
+      "~services/*": [
+        "./src/services/*"
       ],
-      "~g/*": [
-        "./src/logic/*"
+      "~components/*": [
+        "./src/components/*"
       ],
-      "~s/*": [
+      "~utils/*": [
+        "./src/utils/*"
+      ],
+      "~styles/*": [
         "./src/assets/styles/*"
       ],
       "~src/*": [
@@ -19,11 +23,13 @@
       ]
     },
     "strict": true,
-    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-
-    // This is used for css modules (Remove if needed)
+    "esModuleInterop": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
