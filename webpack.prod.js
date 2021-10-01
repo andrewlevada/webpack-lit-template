@@ -48,7 +48,7 @@ const config = mergeWithRules({
 		// new FaviconsWebpackPlugin({
 		// 	logo: `${paths.src}/assets/favicon.png`,
 		// 	favicons: {
-		// 		appName: "Crew Street",
+		// 		appName: "projectname",
 		// 		appDescription: null,
 		// 		lang: 'ru',
 		// 		theme_color: "#000",

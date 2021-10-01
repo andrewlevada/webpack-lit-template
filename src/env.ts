@@ -1,5 +1,3 @@
-// noinspection SpellCheckingInspection
-
 const env = {
   apiUrl: "https://example.com",
 };
