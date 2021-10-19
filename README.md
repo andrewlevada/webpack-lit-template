@@ -42,7 +42,7 @@ npm run build
 You can also generate build with stats file, that can later be used for bundle analysis:
 
 ```bash
-npm run-script build:stats
+npm run build:stats
 ```
 
 ## Dev Server
@@ -50,5 +50,5 @@ npm run-script build:stats
 To run the dev server run:
 
 ```bash
-npm run-script start:dev
+npm run start:dev
 ```
