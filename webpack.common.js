@@ -59,11 +59,13 @@ const config = {
 	module: {
 		rules: [{
 			test: /\.(ts|tsx)$/,
-			include: paths.src,
-			exclude: /node_modules/,
-			use: [
-				{ loader: "ts-loader" }
-			]
+			use: [{
+				loader: 'esbuild-loader',
+				options: {
+					loader: "ts",
+					target: "es6"
+				}
+			}]
 		}, {
 			test: /.(scss|css)$/,
 			use: [
