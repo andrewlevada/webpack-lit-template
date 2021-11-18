@@ -1,10 +1,11 @@
 import { html, LitElement, TemplateResult } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import { componentStyles } from "~src/global";
 import scopedStyles from "./styles.module.scss";
+import { defineComponent } from "~utils/components";
 
-@customElement("hello-text")
-export default class HelloText extends LitElement {
+export default (): void => defineComponent("hello-text", HelloText);
+export class HelloText extends LitElement {
   @property({ type: String }) sub!: string;
 
   render(): TemplateResult {
