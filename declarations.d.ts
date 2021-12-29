@@ -1,4 +1,4 @@
-// This part allows you to use css logic
+// This part allows you to use css modules
 // Delete it if you don't need them
 
 declare module "*.css" {

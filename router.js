@@ -4,7 +4,7 @@
 // Explanation on each field:
 //
 // source - path from /src/pages to directory with file named index.ts
-// which will be used as page component. By default source is also url
+// which will be used as page component. By default, source is also url
 // at which this page will be displayed
 //
 // title - contents of <title> tag for this page
