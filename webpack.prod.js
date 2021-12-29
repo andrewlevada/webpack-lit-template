@@ -4,8 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 const { DuplicatesPlugin } = require("inspectpack/plugin");
-const { mergeWithRules } = require('webpack-merge')
-// const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const { mergeWithRules } = require('webpack-merge');
 
 const config = mergeWithRules({
 	module: {
@@ -44,17 +43,6 @@ const config = mergeWithRules({
 			}
 		}),
 		new DuplicatesPlugin()
-		// Don't forget to add content here
-		// new FaviconsWebpackPlugin({
-		// 	logo: `${paths.src}/assets/favicon.png`,
-		// 	favicons: {
-		// 		appName: "projectname",
-		// 		appDescription: null,
-		// 		lang: 'ru',
-		// 		theme_color: "#000",
-		// 		background: "#000"
-		// 	}
-		// })
 	],
 
 	optimization: {

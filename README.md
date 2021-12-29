@@ -13,7 +13,7 @@ Folders and files in this project:
 4. `/src/services` - place for logic (requests to api, algorithms, etc.)
 5. `/src/utils` - place for useful function that can be used anywhere in project
 6. `/src/assets/styles` - global styles (theming, layouts, mixins, etc.) - it's recommended to split global styles in different files here because tree-shaking will only remove entire files (not parts of files)
-7. `/src/assets/to-root` - on build contents from this folder are copied to the root of the build (useful for files like robots.txt)
+7. `/src/assets/to-root` - on build contents from this folder are copied to the root of the build (useful for files like robots.txt and favicon.ico)
 8. `/src/global.ts` - contains global variables and most importantly imports global styles for all components and pages 
 9. `/router.js` - this file is used to map urls to top level components (pages). Don't forget to change it each time you add a page or remove one.
 
@@ -25,13 +25,13 @@ Install dependencies:
 npm i
 ```
 
-Don't forget to change name of the project in `package.json` and in `webpack.prod.js`
+Don't forget to change name of the project in `package.json`!
 
 ## Build
 
 In this repo TypeScript compiler is used to produce JavaScript that runs in modern browsers. 
-Also, ESLint and StyleLint are used along with it - they are executed in fix mode before every build.
-So, you might want to configure linting rules in `.eslintrc.js` and `.stylelintrc.json` to make them fit your code style.
+Also, ESLint is used along with it - they are executed in fix mode before every build.
+So, you might want to configure linting rules in `.eslintrc.js` to make them fit your code style.
 
 To build full app bundle run:
 
