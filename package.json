@@ -9,8 +9,6 @@
     "lint": "eslint --fix ./src"
   },
   "sideEffects": [
-    "*.scss",
-    "*.css",
     "./src/pages/global.ts"
   ],
   "devDependencies": {
