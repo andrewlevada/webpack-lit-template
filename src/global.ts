@@ -1,13 +1,14 @@
-import axios from "axios";
 import globalStyles from "~styles/global.scss";
 import globalPageStyles from "~src/pages/global-styles.scss";
-import env from "~src/env";
 
-export const server = axios.create();
 export const componentStyles = [globalStyles];
 export const pageStyles = [globalStyles, globalPageStyles];
 
+// This is a place for connecting to api or executing global scripts (like analytics)
+// This file is marked as with side effects, which means that even functions, that are not imported
+// by other components will always be executed if anything from this file is imported
+
 initEnv();
-export function initEnv(): void {
-    server.defaults.baseURL = env.apiUrl;
+function initEnv(): void {
+    // Run global scripts
 }

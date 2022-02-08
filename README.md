@@ -1,6 +1,6 @@
 # Lit Webpack Project Starter
 
-This project can be used as starting point for creating a full application with Lit. It also uses Webpack, SCSS, Typescript and Axios.
+This project can be used as starting point for creating a full multipage application with Lit. It also uses Typescript, Webpack and SCSS.
 
 Fell free to clone it and start your project with bundle build configuration what works like a charm out of the box.
 
@@ -14,7 +14,7 @@ Folders and files in this project:
 5. `/src/utils` - place for useful function that can be used anywhere in project
 6. `/src/assets/styles` - global styles (theming, layouts, mixins, etc.) - it's recommended to split global styles in different files here because tree-shaking will only remove entire files (not parts of files)
 7. `/src/assets/to-root` - on build contents from this folder are copied to the root of the build (useful for files like robots.txt and favicon.ico)
-8. `/src/global.ts` - contains global variables and most importantly imports global styles for all components and pages 
+8. `/src/global.ts` - contains global variables, styles for all components/pages and globally executed scripts, for example analytics
 9. `/router.js` - this file is used to map urls to top level components (pages). Don't forget to change it each time you add a page or remove one.
 
 ## Setup
@@ -39,7 +39,7 @@ To build full app bundle run:
 npm run build
 ```
 
-You can also generate build with stats file, that can later be used for bundle analysis:
+You can also generate build and _stats.json_ file, that can later be used for bundle analysis ([this tool](https://alexkuz.github.io/webpack-chart/) is my favourite):
 
 ```bash
 npm run build:stats
@@ -47,7 +47,7 @@ npm run build:stats
 
 ## Dev Server
 
-To run the dev server run:
+To start the dev server run (by default on _localhost:2797_):
 
 ```bash
 npm run start:dev
