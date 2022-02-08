@@ -11,19 +11,21 @@ export default class TestPage extends LitElement {
     @state() username: string | null = null;
 
     render(): TemplateResult {
-      return html`
-      <div class="container">
-        <hello-text sub="Welcome User">${this.username}</hello-text>
-      </div>
-    `;
+        return html`
+            <div class="container">
+                <hello-text sub="Welcome User">${this.username}</hello-text>
+            </div>
+        `;
     }
 
     connectedCallback(): void {
-      super.connectedCallback();
-      this.username = getUsername();
+        super.connectedCallback();
+        this.username = getUsername();
+        // eslint-disable-next-line no-console
+        if (!PRODUCTION) console.log("Everything is working!");
     }
 
     static get styles(): CSSResultGroup {
-      return [...pageStyles, scopedStyles as never];
+        return [...pageStyles, scopedStyles as never];
     }
 }

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 const SimpleProgressWebpackPlugin = require("simple-progress-webpack-plugin");
 const router = require("./router");
+const {DefinePlugin} = require("webpack");
 
 const pages = router.map(config => { return {
 	...config,
@@ -40,6 +41,10 @@ const config = {
 			filename: `.${page.outputPath}/index.html`,
 			chunks: [page.keyName]
 		})),
+		new DefinePlugin({
+			PRODUCTION: process.env.NODE_ENV.startsWith("production"),
+			"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+		}),
 		new FileManagerPlugin({
 			runTasksInSeries: true,
 			events: {

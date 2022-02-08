@@ -16,3 +16,6 @@ declare module "*.scss" {
 declare module "*.png";
 declare module "*.jpg";
 declare module "*.svg";
+
+// Global variable managed by webpack
+declare const PRODUCTION: boolean;
