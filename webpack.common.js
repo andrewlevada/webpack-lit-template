@@ -21,12 +21,7 @@ const config = {
 
     output: {
         path: `${paths.dist}`,
-
-        filename: pathData => {
-            const page = pages.find(page => page.keyName === pathData.chunk.name);
-            if (!page) return "[contenthash].bundle.js";
-            return `${page.outputPath.substring(1)}/script.js`;
-        },
+        filename: "bundles/[name].[contenthash].js",
     },
 
     plugins: [
