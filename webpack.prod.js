@@ -1,76 +1,75 @@
-const paths = require('./webpack.paths');
-const common = require('./webpack.common');
-const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 const { DuplicatesPlugin } = require("inspectpack/plugin");
-const { mergeWithRules } = require('webpack-merge');
+const { mergeWithRules } = require("webpack-merge");
+const common = require("./webpack.common");
+const paths = require("./webpack.paths");
 
 const config = mergeWithRules({
-	module: {
-		rules: {
-			test: "match",
-			use: {
-				loader: "match",
-				options: "replace",
-			},
-		},
-	},
+    module: {
+        rules: {
+            test: "match",
+            use: {
+                loader: "match",
+                options: "replace",
+            },
+        },
+    },
 })(common, {
-	mode: 'production',
+    mode: "production",
 
-	module: {
-		rules: [{
-			test: /\.(ts|tsx)$/,
-			use: [{ loader: 'minify-html-literals-loader' }]
-		}, {
-			test: /.(scss|css)$/,
-			use: [{
-				loader: 'lit-css-loader',
-				options: { uglify: true }
-			}]
-		}]
-	},
+    module: {
+        rules: [{
+            test: /\.(ts|tsx)$/,
+            use: [{ loader: "minify-html-literals-loader" }],
+        }, {
+            test: /.(scss|css)$/,
+            use: [{
+                loader: "lit-css-loader",
+                options: { uglify: true },
+            }],
+        }],
+    },
 
-	plugins: [
-		new FileManagerPlugin({
-			events: {
-				onEnd: {
-					archive: [
-						{ source: `${paths.dist}/`, destination: `${paths.dist}/build.zip` }
-					]
-				}
-			}
-		}),
-		new DuplicatesPlugin()
-	],
+    plugins: [
+        new FileManagerPlugin({
+            events: {
+                onEnd: {
+                    archive: [
+                        { source: `${paths.dist}/`, destination: `${paths.dist}/build.zip` },
+                    ],
+                },
+            },
+        }),
+    ],
 
-	optimization: {
-		minimize: true,
+    optimization: {
+        minimize: true,
 
-		minimizer: [
-			new TerserPlugin({
-				terserOptions: {
-					format: {
-						comments: false
-					}
-				},
-				extractComments: false
-			}),
-			new CssMinimizerPlugin()
-		],
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: { format: { comments: false } },
+                extractComments: false,
+            }),
+            new CssMinimizerPlugin(),
+        ],
 
-		runtimeChunk: 'single',
-		splitChunks: {
-			cacheGroups: {
-				vendor: {
-					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-					chunks: 'all'
-				}
-			}
-		}
-	}
-})
+        runtimeChunk: "single",
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendors",
+                    chunks: "all",
+                },
+            },
+        },
+    },
+});
+
+// This plugin brakes stats.json
+if (!process.env.NODE_ENV.endsWith("stats"))
+    config.plugins.push(new DuplicatesPlugin());
 
 module.exports = config;

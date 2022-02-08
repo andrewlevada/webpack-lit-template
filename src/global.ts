@@ -9,5 +9,5 @@ export const pageStyles = [globalStyles, globalPageStyles];
 
 initEnv();
 export function initEnv(): void {
-  server.defaults.baseURL = env.apiUrl;
+    server.defaults.baseURL = env.apiUrl;
 }
