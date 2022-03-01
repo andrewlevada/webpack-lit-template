@@ -1,4 +1,4 @@
-import { html, LitElement, TemplateResult } from "lit";
+import { css, CSSResultGroup, html, LitElement, TemplateResult } from "lit";
 import { property } from "lit/decorators.js";
 import { componentStyles } from "~src/global";
 import { defineComponent } from "~utils/components";
@@ -15,7 +15,11 @@ export class HelloText extends LitElement {
         `;
     }
 
-    static get styles(): CSSStyleSheet[] {
-        return [...componentStyles, scopedStyles as never];
+    static get styles(): CSSResultGroup {
+        // Styles can either be in this file (only css)
+        // or imported from another file (scss in this case)
+        return [...componentStyles, scopedStyles as never, css`
+          // More styles here
+        `];
     }
 }
