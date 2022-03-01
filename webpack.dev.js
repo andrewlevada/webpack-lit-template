@@ -6,7 +6,7 @@ const config = merge(common, {
     mode: "development",
 
     devServer: {
-        static: { directory: paths.dist },
+        static: { directory: paths.build },
         compress: true,
         host: "0.0.0.0", // Not localhost to be able to connect from other device in local network
         port: 2797,

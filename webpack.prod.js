@@ -37,7 +37,7 @@ const config = mergeWithRules({
             events: {
                 onEnd: {
                     archive: [
-                        { source: `${paths.dist}/`, destination: `${paths.dist}/build.zip` },
+                        { source: `${paths.build}/`, destination: `${paths.build}/build.zip` },
                     ],
                 },
             },

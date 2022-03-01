@@ -20,7 +20,7 @@ const config = {
     entry: Object.fromEntries(pages.map(page => [page.keyName, `${paths.pages}${page.source}/index.ts`])),
 
     output: {
-        path: `${paths.dist}`,
+        path: `${paths.build}`,
         filename: "bundles/[name].[contenthash].js",
     },
 
@@ -43,12 +43,12 @@ const config = {
             runTasksInSeries: true,
             events: {
                 onStart: {
-                    delete: [`${paths.dist}/`],
-                    mkdir: [`${paths.dist}/`],
+                    delete: [`${paths.build}/`],
+                    mkdir: [`${paths.build}/`],
                 },
                 onEnd: {
                     copy: [
-                        { source: `${paths.src}/assets/to-root`, destination: `${paths.dist}/` },
+                        { source: `${paths.src}/assets/to-root`, destination: `${paths.build}/` },
                     ],
                 },
             },

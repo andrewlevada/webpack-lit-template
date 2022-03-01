@@ -33,7 +33,7 @@ In this repo TypeScript compiler is used to produce JavaScript that runs in mode
 Also, ESLint is used along with it - they are executed in fix mode before every build.
 So, you might want to configure linting rules in `.eslintrc.js` to make them fit your code style.
 
-To build full app bundle run:
+To build full app bundle (output files will be in _build_ folder) run:
 
 ```bash
 npm run build

@@ -1,6 +1,6 @@
 {
   "name": "projectname",
-  "version": "4.1.4",
+  "version": "4.1.5",
   "private": true,
   "scripts": {
     "build": "npm run-script lint && cross-env NODE_ENV=production webpack --config webpack.prod.js",
