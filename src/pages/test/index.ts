@@ -1,4 +1,4 @@
-import { css, CSSResultGroup, html, LitElement, TemplateResult } from "lit";
+import { css, html, LitElement, TemplateResult } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { pageStyles } from "~src/global";
 import { getUsername } from "~services/name-service";
@@ -25,11 +25,9 @@ export default class TestPage extends LitElement {
         if (!PRODUCTION) console.log("Everything is working!");
     }
 
-    static get styles(): CSSResultGroup {
-        // Styles can either be in this file (only css)
-        // or imported from another file (scss in this case)
-        return [...pageStyles, scopedStyles as never, css`
-          // More styles here
-        `];
-    }
+    // Styles can either be in this file (only css)
+    // or imported from another file (scss in this case)
+    static styles = [...pageStyles, scopedStyles as never, css`
+        // More styles here
+    `];
 }

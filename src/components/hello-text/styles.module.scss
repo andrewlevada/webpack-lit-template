@@ -1,3 +1,6 @@
+// Do not @import or @use global styles (except for theming)
+// To avoid css duplication (it's not tree-shakable)
+
 :host {
   h4 {
     color: gray;
