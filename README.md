@@ -27,6 +27,14 @@ npm i
 
 Don't forget to change name of the project in `package.json`!
 
+## Dev Server
+
+To start the dev server run (by default on _localhost:2797_):
+
+```bash
+npm run dev
+```
+
 ## Build
 
 In this repo TypeScript compiler is used to produce JavaScript that runs in modern browsers. 
@@ -45,10 +53,3 @@ You can also generate build and _stats.json_ file, that can later be used for bu
 npm run build:stats
 ```
 
-## Dev Server
-
-To start the dev server run (by default on _localhost:2797_):
-
-```bash
-npm run start:dev
-```

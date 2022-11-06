@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm run-script lint && cross-env NODE_ENV=production webpack --config webpack.prod.js",
     "build:stats": "npm run-script lint && cross-env NODE_ENV=production:stats webpack --config webpack.prod.js --profile --json > stats.json",
-    "start:dev": "cross-env NODE_ENV=development webpack serve --hot --config webpack.dev.js",
+    "dev": "cross-env NODE_ENV=development webpack serve --hot --config webpack.dev.js",
     "lint": "eslint --fix ./src"
   },
   "sideEffects": [
