@@ -1,6 +1,6 @@
 # Lit Webpack Project Starter
 
-This project can be used as starting point for creating a full multipage application with Lit. It also uses Typescript, Webpack and SCSS.
+This project can be used as starting point for creating a multipage application with Lit. It also uses Typescript, Webpack and SCSS.
 
 Fell free to clone it and start your project with bundle build configuration what works like a charm out of the box.
 
@@ -13,7 +13,7 @@ Folders and files in this project:
 4. `/src/services` - place for logic (requests to api, algorithms, etc.)
 5. `/src/utils` - place for useful function that can be used anywhere in project
 6. `/src/assets/styles` - global styles (theming, layouts, mixins, etc.) - it's recommended to split global styles in different files here because tree-shaking will only remove entire files (not parts of files)
-7. `/src/assets/to-root` - on build contents from this folder are copied to the root of the build (useful for files like robots.txt and favicon.ico)
+7. `/src/assets/to-root` - on build contents from this folder are copied to the root of the build (useful for files like `robots.txt` and `favicon.ico`)
 8. `/src/global.ts` - contains global variables, styles for all components/pages and globally executed scripts, for example analytics
 9. `/router.js` - this file is used to map urls to top level components (pages). Don't forget to change it each time you add a page or remove one.
 
