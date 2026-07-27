@@ -26,6 +26,10 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
   },
 }

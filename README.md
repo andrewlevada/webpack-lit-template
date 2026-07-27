@@ -22,34 +22,34 @@ Folders and files in this project:
 Install dependencies:
 
 ```bash
-npm i
+pnpm install
 ```
 
-Don't forget to change name of the project in `package.json`!
+Don't forget to change name of the project in `package.json`
 
 ## Dev Server
 
-To start the dev server run (by default on _localhost:2797_):
+To start the dev server run (by default on _localhost:**2797**_):
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## Build
 
 In this repo TypeScript compiler is used to produce JavaScript that runs in modern browsers. 
 Also, ESLint is used along with it - they are executed in fix mode before every build.
-So, you might want to configure linting rules in `.eslintrc.js` to make them fit your code style.
+So, you might want to configure linting rules in `eslint.config.js` to make them fit your code style.
 
 To build full app bundle (output files will be in _build_ folder) run:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 You can also generate build and _stats.json_ file, that can later be used for bundle analysis ([this tool](https://alexkuz.github.io/webpack-chart/) is my favourite):
 
 ```bash
-npm run build:stats
+pnpm run build:stats
 ```
 
